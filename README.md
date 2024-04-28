@@ -2,7 +2,7 @@
 
 # GeoComs
 
-GeoComs is a location-based chat application that I am actively working on as my Senior Capstone project at GCU. This application provides a space for individuals to digitally connect with peers around them. GeoComs attempts to solve the problem of being able to digitally connect with those who are physically around you.
+With so much technology introduced in the world today, it is often difficult to connect and communicate with people who are around you. GeoComs is a project that is aimed at decreasing this social barrier and making it more common to connect with people around you through technology. GeoComs will be a Progressive Web Application (PWA) that allows users to create chat rooms based on their geographic location. Other users will be able to join a created group chat if they are in the same geographic location. In these newly created group chats, users will be able to send messages to further develop a relationship amongst themselves. The goal of GeoComs is to provide a space in the technology world for people to share a wide variety of messages with those around them.
 
 GeoComs will actively obtain a user's location and use that location to create or join chat rooms. When a chat room is created, the location that the user was at is stored along with the rest of the chat room information. When joining a chat room, GeoComs will find all chat rooms that are within 50 meters of the user and they will be made available to join. Once the user joins a chat room, they will be able to participate in Realtime messaging with other members in the chat room.
 
@@ -21,6 +21,16 @@ GeoComs is hosted on the Contend Delivery Network (CDN) Netlify, and can be acce
 - Netlify
 
 I chose Vue.js as my JavaScript framework for this project because of its simplicity and effectiveness in developing code on the client. With this project, I was able to further extend my knowledge of Vue.js by pairing it with the global state management system Pinia. For the backend of the project I chose to use the back-end-as-a-service platform Supabase. While using this platform I learned about row level security (RLS), triggers, and PostgreSQL functions. This platform also allows GeoComs to update data in Realtime.
+
+## Logical Solution Design
+
+The Logical Solution Design displayed below begins with the Presentation Layer which contains a single page application (SPA). This SPA contains the Vue Router which is in charge of navigating to the many views on the application. Each view contains many components, and this is all made up of HTML 5 and CSS 3. The Presentation Layer communicates with the Pinia Stores through actions and getters. Actions are methods in the stores that are called when the SPA would like to change something while getters simply get the current state of a model and send it to the SPA. Currently there are 2 stores within the GeoComs application, and these are the User Store and the Chat Store. Both of these stores contain models, and they are both connected to the Supabase.js API which is the client that talks to the Supabase back-end-as-a-service. The communication between the stores and the Supabase back-end requires a JWT token, and this token is obtained by authenticating a user through Supabase’s authentication method. Once a JWT token is acquired, the stores can now communicate with the Supabase back-end via queries and subscriptions.
+
+![Logical Solution Design](public/LogicalSolutionDesign.png)
+
+## General Technical Approach
+
+The overall design of the GeoComs application was done in a way that highlights unique features while also providing a familiar environment to users that have used other chat applications. This design strategy begins with the design of the database. I have designed a simple yet efficient relational database that allows users to add unique data about themselves, but not requiring that data. This application will allow users to effortlessly sign up for the application using only their email, requiring no additional information for full access. The overall UI should be easy for the user to understand and navigate smoothly between pages. Efficiency was a priority in the process of creating components for the GeoComs application. This means that when creating a component, the developer should make that component reusable in other ways by allowing different style properties on the component. The UI must be completely responsive and function as if it were a native application to any mobile platform.
 
 ## Functional Requirements
 
@@ -56,6 +66,4 @@ While developing this project I understood that I was taking a risk in requiring
 
 ## Issues
 
-There are currently no outstanding issues with the GeoComs application.
-
-While my Capstone Project is complete, I do plan on adding further enhancements to the application in the future.
+There are currently no outstanding issues with the GeoComs application. While my Capstone Project is complete, I do plan on adding further enhancements to the application in the future.
